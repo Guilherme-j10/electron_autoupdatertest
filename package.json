@@ -1,7 +1,7 @@
 {
   "name": "electronupdater",
   "author": "Mega Conecta Soluções em Tecnologia <desenvolvimento@megaconecta.com.br>",
-  "version": "v1.0.2",
+  "version": "v1.0.3",
   "main": "./public/electron.js",
   "private": true,
   "homepage": ".",
@@ -27,22 +27,28 @@
     "url": "https://github.com/Guilherme-j10/electron_autoupdatertest.git"
   },
   "build": {
-    "appId": "com.agent.app",
+    "appId": "com.test.electronupdate",
     "productName": "Cloud Call - Agente",
     "win": {
-      "target": "portable",
+      "target": "nsis",
       "icon": "./build/megaconecta.png"
     },
     "linux": {
       "target": "deb"
-    }
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "token": "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"
+      }
+    ]
   },
   "scripts": {
     "dev": "concurrently \"npm run start\" \"wait-on http://localhost:3234 && electron .\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "dist": "electron-builder --publish=never",
-    "deploy": "electron-builder --publish=always",
+    "deploy": "electron-builder -p always",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

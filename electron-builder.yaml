@@ -1,0 +1,4 @@
+appId: com.test.electronupdate
+publish: 
+  provider: github
+  token: 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
