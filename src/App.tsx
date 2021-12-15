@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { ContainerMain, GlobaStyle } from './Style';
+const electron = window.require('electron');
 
 function App() {
+
+  const [ VersionApp, setVersionApp ] = useState('');
+
+  useEffect(() => {
+    electron.ipcRenderer.send('get_version_app');
+    electron.ipcRenderer.on('get_version_app', (_: any, version: string) => {
+      setVersionApp(version);
+    })
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobaStyle/>
+      <ContainerMain>
+        <h1>Aplicação Electron - auto updater</h1>
+        <strong>VERSÃO: {VersionApp}</strong>
+      </ContainerMain>
+    </>
   );
 }
 
