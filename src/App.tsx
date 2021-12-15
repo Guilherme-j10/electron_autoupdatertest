@@ -28,6 +28,10 @@ function App() {
       electron.ipcRenderer.removeAllListeners('update_downloaded');
       TextNotification.current.innerText = 'Atualização baixada. Será instalada ao reiniciar. Reiniciar agora?';
     });
+
+    electron.ipcRenderer.on('update-downloaded', (_: any, props: any) => {
+      console.log(_, props)
+    })
   }, []);
 
   return (

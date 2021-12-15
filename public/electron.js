@@ -57,8 +57,12 @@ autoUpdater.on('update-available', () => {
   mainWindow.webContents.send('update-availiable');
 });
 
-autoUpdater.on('update-downloaded', () => {
-  mainWindow.webContents.send('update_downloaded');
+autoUpdater.on('download-progress', () => {
+  mainWindow.webContents.send('download-progress');
+});
+
+autoUpdater.on('update-downloaded', (props) => {
+  mainWindow.webContents.send('update_downloaded', props);
 });
 
 ipcMain.on('restart_app', () => {

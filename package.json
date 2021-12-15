@@ -1,7 +1,7 @@
 {
   "name": "electronupdater",
   "author": "Mega Conecta Soluções em Tecnologia <desenvolvimento@megaconecta.com.br>",
-  "version": "v1.0.4",
+  "version": "v1.0.5",
   "main": "./public/electron.js",
   "private": true,
   "homepage": ".",
@@ -39,7 +39,7 @@
     "publish": [
       {
         "provider": "github",
-        "token": "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"
+        "token": "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"
       }
     ]
   },
