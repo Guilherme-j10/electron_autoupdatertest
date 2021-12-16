@@ -17,36 +17,10 @@ function App() {
       VersionApp.current.innerHTML = version;
     });
 
-    electron.ipcRenderer.on('chekking', () => {
-      electron.ipcRenderer.removeAllListeners('chekking');
-      console.log('Verificando download');
-      setShowNotification({ show: true, options: false });
-      TextNotification.current.innerHTML = 'Buscando por atualizações.';
-    })
-
-    electron.ipcRenderer.on('update-not-available', () => {
-      electron.ipcRenderer.removeAllListeners('update-not-available');
-      console.log('Nenhum update disponivel');
-      setShowNotification({ show: true, options: false });
-      TextNotification.current.innerHTML = 'Nenhum update disponivel';
-    });
-
-    electron.ipcRenderer.on('update_available', () => {
-      electron.ipcRenderer.removeAllListeners('update_available');
-      console.log('Update disponivel');
-      setShowNotification({ show: true, options: false });
-      TextNotification.current.innerHTML = 'Nova atualização disponível. Fazendo Download...';
-    });
-
     electron.ipcRenderer.on('update_downloaded', () => {
       electron.ipcRenderer.removeAllListeners('update_downloaded');
-      console.log('Download baixado');
       setShowNotification({ show: true, options: true });
-      TextNotification.current.innerText = 'Atualização baixada. Será instalada ao reiniciar. Reiniciar agora?';
-    });
-    
-    electron.ipcRenderer.on('update-downloaded', (_: any, props: any) => {
-      console.log(_, props);
+      TextNotification.current.innerText = 'Nova atualização disponivel, sera instalada ao reiniciar o programa. Deseja reiniciar agora ?';
     });
   }, []);
 

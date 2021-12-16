@@ -53,18 +53,6 @@ ipcMain.on('get_version_app', (event) => {
   event.sender.send('get_version_app', app.getVersion());
 });
 
-autoUpdater.on('checking-for-update', () => {
-  mainWindow.webContents.send('chekking');
-});
-
-autoUpdater.on('update-available', () => {
-  mainWindow.webContents.send('update-availiable');
-});
-
-autoUpdater.on('update-not-available', () => {
-  mainWindow.webContents.send('update-not-available');
-});
-
 autoUpdater.on('update-downloaded', (props) => {
   mainWindow.webContents.send('update_downloaded', props);
 });
