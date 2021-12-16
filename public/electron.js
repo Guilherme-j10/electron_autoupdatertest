@@ -54,15 +54,15 @@ ipcMain.on('get_version_app', (event) => {
 });
 
 autoUpdater.on('checking-for-update', () => {
-  ipcMain.emit('chekking');
+  mainWindow.webContents.send('chekking');
 });
 
 autoUpdater.on('update-available', () => {
-  ipcMain.emit('update-availiable');
+  mainWindow.webContents.send('update-availiable');
 });
 
 autoUpdater.on('update-downloaded', (props) => {
-  ipcMain.emit('update_downloaded', props);
+  mainWindow.webContents.send('update_downloaded', props);
 });
 
 ipcMain.on('restart_app', () => {
