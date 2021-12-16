@@ -32,8 +32,8 @@ const createNewBrowserWindow = () => {
   })
 
   mainWindow.once('ready-to-show', () => {
-    autoUpdater.checkForUpdatesAndNotify();
     mainWindow.show();
+    autoUpdater.checkForUpdatesAndNotify();
   });
 }
 
@@ -57,8 +57,8 @@ autoUpdater.on('update-available', () => {
   mainWindow.webContents.send('update-availiable');
 });
 
-autoUpdater.on('download-progress', () => {
-  mainWindow.webContents.send('download-progress');
+autoUpdater.on('download-progress', (props) => {
+  mainWindow.webContents.send('download-progress', props);
 });
 
 autoUpdater.on('update-downloaded', (props) => {
