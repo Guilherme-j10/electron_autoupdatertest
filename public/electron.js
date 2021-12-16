@@ -61,6 +61,10 @@ autoUpdater.on('update-available', () => {
   mainWindow.webContents.send('update-availiable');
 });
 
+autoUpdater.on('update-not-available', () => {
+  mainWindow.webContents.send('update-not-available');
+});
+
 autoUpdater.on('update-downloaded', (props) => {
   mainWindow.webContents.send('update_downloaded', props);
 });
