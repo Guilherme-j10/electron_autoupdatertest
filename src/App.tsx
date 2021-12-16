@@ -38,7 +38,7 @@ function App() {
     <>
       <GlobaStyle/>
       <ContainerMain>
-        <h1>Aplicação Electron - auto updater</h1>
+        <h1>Electron Aplication - auto updater</h1>
         <strong>VERSÃO: <p ref={VersionApp}></p></strong>
       </ContainerMain>
       {ShowNotification.show ? (
