@@ -17,21 +17,27 @@ function App() {
       VersionApp.current.innerHTML = version;
     });
 
-    electron.ipcRenderer.on('update_available', () => {
+    electron.ipcRenderer.on('chekking', () => {
+      console.log('Verificando download');
       setShowNotification({ show: true, options: false });
-      electron.ipcRenderer.removeAllListeners('update_downloaded');
+      TextNotification.current.innerHTML = 'Buscando por atualizações.';
+    })
+
+    electron.ipcRenderer.on('update_available', () => {
+      console.log('Update disponivel');
+      setShowNotification({ show: true, options: false });
       TextNotification.current.innerHTML = 'Nova atualização disponível. Fazendo Download...';
     });
 
     electron.ipcRenderer.on('update_downloaded', () => {
+      console.log('Download baixado');
       setShowNotification({ show: true, options: true });
-      electron.ipcRenderer.removeAllListeners('update_downloaded');
       TextNotification.current.innerText = 'Atualização baixada. Será instalada ao reiniciar. Reiniciar agora?';
     });
 
     electron.ipcRenderer.on('update-downloaded', (_: any, props: any) => {
-      console.log(_, props)
-    })
+      console.log(_, props);
+    });
   }, []);
 
   return (

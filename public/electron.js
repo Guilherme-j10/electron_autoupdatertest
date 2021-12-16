@@ -51,20 +51,20 @@ app.on('window-all-closed', () => {
 
 ipcMain.on('get_version_app', (event) => {
   event.sender.send('get_version_app', app.getVersion());
-})
-
-autoUpdater.on('update-available', () => {
-  mainWindow.webContents.send('update-availiable');
 });
 
-autoUpdater.on('download-progress', (props) => {
-  mainWindow.webContents.send('download-progress', props);
+autoUpdater.on('checking-for-update', () => {
+  ipcMain.emit('chekking');
+});
+
+autoUpdater.on('update-available', () => {
+  ipcMain.emit('update-availiable');
 });
 
 autoUpdater.on('update-downloaded', (props) => {
-  mainWindow.webContents.send('update_downloaded', props);
+  ipcMain.emit('update_downloaded', props);
 });
 
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
-})
+});
